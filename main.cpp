@@ -1,21 +1,14 @@
 #include <iostream>
-#include "dynArray.h"
+#include "linkedList.h"
 
 int main()
 {
-    DynArray *myArray = new DynArray();
+    LinkedList myList;
 
-    for (int i = 0; i < 200; i++)
+    for (int i = 0; i < 20; i++)
     {
-        myArray->addLast(i);
-
-        std::cout << myArray->getSize() << std::endl;
+        myList.addNode(i);
     }
-
-    myArray->printAll();
-
-    delete myArray;
-    myArray = NULL;
 
     return 0;
 }

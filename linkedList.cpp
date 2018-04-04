@@ -15,16 +15,26 @@ LinkedList::LinkedList()
 
 LinkedList::LinkedList(int initialValue)
 {
-    struct Node *newNode = createNode(initialValue);
+    Node *newNode = createNode(initialValue);
 
     header = newNode;
     trailer = newNode;
     size = 1;
 }
 
+LinkedList::~LinkedList()
+{
+    Node *currentNode = header;
+    while (hasNext(currentNode))
+    {
+        deleteNode(currentNode);
+        currentNode = getNext(currentNode);
+    }
+}
+
 LinkedList::Node *LinkedList::createNode(int value)
 {
-    struct Node *newNode = new struct Node;
+    Node *newNode = new Node;
     newNode->value = value;
     newNode->next = NULL;
     newNode->previous = NULL;
@@ -54,7 +64,7 @@ int LinkedList::getSize()
 
 void LinkedList::addNode(int value)
 {
-    struct Node *newNode = createNode(value);
+    Node *newNode = createNode(value);
 
     if (!header)
     {
@@ -70,10 +80,20 @@ void LinkedList::addNode(int value)
 
 bool LinkedList::removeNode(int value)
 {
-    struct Node *toRemove = findNode(value);
+    Node *toRemove = findNode(value);
 
     if (!isNode(toRemove))
         return false;
+
+    Node *previousNode = toRemove->previous;
+    Node *nextNode = toRemove->next;
+
+    previousNode->next = nextNode;
+    nextNode->previous = previousNode;
+
+    deleteNode(toRemove);
+
+    return true;
 }
 
 /*
@@ -82,7 +102,7 @@ bool LinkedList::removeNode(int value)
  */
 bool LinkedList::searchList(int value)
 {
-    struct Node *foundNode = findNode(value);
+    Node *foundNode = findNode(value);
     return isNode(foundNode);
 }
 
@@ -94,25 +114,43 @@ bool LinkedList::searchList(int value)
 
 LinkedList::Node *LinkedList::findNode(int value)
 {
-    struct Node *currentNode = header;
+    Node *currentNode = header;
 
     // Loop invariant: The current node is not the last node of the list
-    while (currentNode->next)
+    while (hasNext(currentNode))
     {
         if (currentNode->value == value)
             return currentNode;
 
-        currentNode = currentNode->next;
+        currentNode = getNext(currentNode);
     }
 
     return NULL;
 }
 
 // Private method to check if a node exists. Facilitates code-reuse
-bool LinkedList::isNode(struct Node *checkNode)
+bool LinkedList::isNode(Node *checkNode)
 {
     if (checkNode)
         return true;
     else
         return false;
+}
+
+void LinkedList::deleteNode(Node *toDelete)
+{
+    delete toDelete;
+    toDelete = NULL;
+}
+/*
+ * Used to iterate over Nodes, start will usually be the "header"
+ */
+LinkedList::Node *LinkedList::getNext(Node *start)
+{
+    return start->next;
+}
+
+bool LinkedList::hasNext(Node *node)
+{
+    return isNode(node->next);
 }

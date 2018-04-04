@@ -29,18 +29,22 @@ public:
 private:
   int size;
 
-  struct Node
+  typedef struct _Node
   {
     int value;
-    struct Node *next;
-    struct Node *previous;
-  };
+    _Node *next;
+    _Node *previous;
+  } Node;
 
-  struct Node *header;
-  struct Node *trailer;
+  Node *header;
+  Node *trailer;
 
-  struct Node *createNode(int value);
-  struct Node *findNode(int value);
-  bool isNode(struct Node *checkNode);
+  Node *createNode(int value);
+  void deleteNode(Node *toDelete);
+  Node *findNode(int value);
+  bool isNode(Node *checkNode);
+
+  Node *getNext(Node *start);
+  bool hasNext(Node *node);
 };
 #endif

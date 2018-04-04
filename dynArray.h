@@ -1,21 +1,29 @@
 #ifndef DYNARRAY_H
 #define DYNARRAY_H
 
+/*
+ * An implementation of a "vector" or "ArrayList" meant for practice
+ */
+
 class DynArray
 {
-  public:
-    DynArray();
-    DynArray(int size);
-    ~DynArray();
-    int getSize();
-    void addInt(int item);
-    int getInt(int index);
-    int removeInt(int index);
+public:
+  DynArray(int size);
+  DynArray();
+  ~DynArray();
 
-  private:
-    void expandArray();
-    int *arrayP;
-    int size;
-    int itemAmount;
+  int getSize();
+  int removeInt(int index);
+
+  void addLast(int item);
+  int getInt(int index);
+
+  void printAll();
+
+private:
+  void expandArray();
+  int *arrayP;
+  int size;
+  int itemAmount;
 };
 #endif

@@ -3,12 +3,19 @@
 
 int main()
 {
-    DynArray *myArray = new DynArray(50);
+    DynArray *myArray = new DynArray();
 
-    int arraySize = myArray->getSize();
-    std::cout << arraySize << std::endl;
+    for (int i = 0; i < 200; i++)
+    {
+        myArray->addLast(i);
+
+        std::cout << myArray->getSize() << std::endl;
+    }
+
+    myArray->printAll();
 
     delete myArray;
     myArray = NULL;
+
     return 0;
 }

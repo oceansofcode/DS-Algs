@@ -1,40 +1,118 @@
 #include <iostream>
 #include "linkedList.h"
 
-template <class T>
-LinkedList<T>::LinkedList()
+/*
+ * Two constructors, either creating an empty list if 
+ * no arguments are entered, or creating a list with an initial value
+ */
+
+LinkedList::LinkedList()
 {
-    head = NULL;
-    tail = NULL;
+    header = NULL;
+    trailer = NULL;
+    size = 0;
 }
 
-template <class T>
-T LinkedList<T>::getHead()
+LinkedList::LinkedList(int initialValue)
 {
-    return this.head->ele;
+    struct Node *newNode = createNode(initialValue);
+
+    header = newNode;
+    trailer = newNode;
+    size = 1;
 }
 
-template <class T>
-T LinkedList<T>::getTail()
+LinkedList::Node *LinkedList::createNode(int value)
 {
-    return this.tail->ele;
+    struct Node *newNode = new struct Node;
+    newNode->value = value;
+    newNode->next = NULL;
+    newNode->previous = NULL;
+}
+/*
+ * Acessor methods for the int value of the head, tail, and the size of the list
+ */
+int LinkedList::getHead()
+{
+    return header->value;
 }
 
-template <class T>
-void LinkedList<T>::addNode(T item)
+int LinkedList::getTail()
 {
-    node *temp = new node;
-    temp->ele = item;
-    temp->next = NULL;
+    return trailer->value;
+}
 
-    if (!head)
+int LinkedList::getSize()
+{
+    return size;
+}
+
+/*
+ * Takes in an int value and creates a Node corresponding
+ * to it's value and position
+ */
+
+void LinkedList::addNode(int value)
+{
+    struct Node *newNode = createNode(value);
+
+    if (!header)
     {
-        head = temp;
-        tail = temp;
+        header = newNode;
+        trailer = newNode;
+        return;
     }
+
+    trailer->next = newNode;
+    newNode->previous = trailer;
+    trailer = newNode;
+}
+
+bool LinkedList::removeNode(int value)
+{
+    struct Node *toRemove = findNode(value);
+
+    if (!isNode(toRemove))
+        return false;
+}
+
+/*
+ * Returns true if the item is in the list,
+ * false otherwise. Delegates to private methods.
+ */
+bool LinkedList::searchList(int value)
+{
+    struct Node *foundNode = findNode(value);
+    return isNode(foundNode);
+}
+
+/*
+ * Returns a node associated with an integer value, or NULL
+ * if such a node does not exist. This method is private as
+ * it should only be used by public functions as a subroutine.
+ */
+
+LinkedList::Node *LinkedList::findNode(int value)
+{
+    struct Node *currentNode = header;
+
+    // Loop invariant: The current node is not the last node of the list
+    while (currentNode->next)
+    {
+        if (currentNode->value == value)
+            return currentNode;
+
+        currentNode = currentNode->next;
+    }
+
+    return NULL;
+}
+
+// Private method to check if a node exists. Facilitates code-reuse
+bool LinkedList::isNode(struct Node *checkNode)
+{
+    if (checkNode)
+        return true;
     else
-    {
-        tail->next = temp;
-        tail = temp;
-    }
+        return false;
 }

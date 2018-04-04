@@ -1,18 +1,14 @@
 #include <iostream>
-#include "sorts.h"
-using namespace std;
+#include "dynArray.h"
 
 int main()
 {
-    int myArray[] = {1, 51, 6524, 41, 42, 345, 4564, 131, 6, 4, 13, 63, 1, 2, 2, 3};
-    int arraySize = sizeof(myArray) / sizeof(*myArray);
+    DynArray *myArray = new DynArray(50);
 
-    bubbleSort(myArray, arraySize);
+    int arraySize = myArray->getSize();
+    std::cout << arraySize << std::endl;
 
-    bool sorted = sortTest(myArray, arraySize);
-
-    if (!sorted)
-        cout << "Not sorted!!!" << endl;
-    else
-        cout << "GREAT SUCCESS" << endl;
+    delete myArray;
+    myArray = NULL;
+    return 0;
 }

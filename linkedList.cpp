@@ -24,11 +24,13 @@ LinkedList::LinkedList(int initialValue)
 
 LinkedList::~LinkedList()
 {
-    Node *currentNode = header;
-    while (hasNext(currentNode))
+    Node *nextNode;
+
+    while (header)
     {
-        deleteNode(currentNode);
-        currentNode = getNext(currentNode);
+        nextNode = header->next;
+        deleteNode(header);
+        header = nextNode;
     }
 }
 

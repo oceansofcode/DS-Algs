@@ -1,5 +1,5 @@
 #include <iostream>
-#include "sorts.h"
+#include "sorts.hpp"
 #include <algorithm>
 #include <random>
 

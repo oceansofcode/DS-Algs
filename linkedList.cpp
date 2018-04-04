@@ -1,5 +1,5 @@
 #include <iostream>
-#include "linkedList.h"
+#include "linkedList.hpp"
 
 /*
  * Two constructors, either creating an empty list if 

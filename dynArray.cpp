@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dynArray.h"
+#include "dynArray.hpp"
 
 DynArray::DynArray() : DynArray::DynArray(10) {}
 

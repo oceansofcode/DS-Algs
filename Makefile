@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -g -c
-DEPS = sorts.h dynArray.h linkedList.h
+DEPS = sorts.hpp dynArray.hpp linkedList.hpp
 OBJ = sorts.o main.o dynArray.o linkedList.o
 
 a.exe: $(OBJ)

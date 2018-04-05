@@ -78,6 +78,7 @@ void LinkedList::addNode(int value)
     trailer->next = newNode;
     newNode->previous = trailer;
     trailer = newNode;
+    size++;
 }
 
 bool LinkedList::removeNode(int value)

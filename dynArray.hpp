@@ -1,6 +1,8 @@
 #ifndef DYNARRAY_H
 #define DYNARRAY_H
 
+#include <iostream>
+
 /*
  * An implementation of a "vector" or "ArrayList" meant for practice
  */
@@ -45,6 +47,7 @@ public:
     *(arrayP + itemAmount) = item;
     itemAmount++;
   }
+
   T getItem(int index)
   {
     return *(arrayP + index);
@@ -63,26 +66,52 @@ public:
     }
   }
 
+  /*
+   * returns a static array version of the code
+   * for use in functions that take in a standard array,
+   * note that changes in this array will not change anything
+   * in the class' array
+   * 
+   * The array returned will be of the same size as the class array
+   * to facilitate copying every element, the cost of this is at worst
+   * twice the space used as elements in the array.
+   */
+
+  T *toArray()
+  {
+    T *staticArray = copyArray(size);
+
+    return staticArray;
+  }
+
 private:
   T *arrayP;
 
   void expandArray()
   {
     int newSize = this->size * 2;
-    T *newArray = new T[newSize];
-
-    for (int i = 0; i < this->size; i++)
-    {
-      *(newArray + i) = *(arrayP + i);
-    }
+    T *newArray = copyArray(newSize);
 
     delete[] arrayP;
     size = newSize;
     arrayP = newArray;
   }
 
+  T *copyArray(int size)
+  {
+    T *newArray = new T[size];
+
+    for (int i = 0; i < size; i++)
+    {
+      *(newArray + i) = *(arrayP + i);
+    }
+
+    return newArray;
+  }
+
   int size;
 
   int itemAmount;
 };
+
 #endif

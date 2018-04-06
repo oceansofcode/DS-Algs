@@ -2,8 +2,9 @@
 #define DYNARRAY_H
 
 /*
- * An implementation of a "vector" or "ArrayList" meant for practice
+ * A simple implementation of a "vector" or "ArrayList"
  */
+
 template <typename T>
 class DynArray
 {
@@ -45,14 +46,27 @@ public:
     *(arrayP + itemAmount) = item;
     itemAmount++;
   }
+
   T getItem(int index)
   {
+    if (!errorCheck)
+      return NULL;
+
     return *(arrayP + index);
   }
 
-  void addItem(T item, int index);
+  void addItem(T item, int index)
+  {
+    if (index == itemAmount + 1)
+    {
+      addLast(T item)
+    }
+    else
+    {
+    }
+  }
 
-  T removeInt(int index);
+  T removeItem(int index);
 
   void printAll()
   {
@@ -79,6 +93,14 @@ private:
     delete[] arrayP;
     size = newSize;
     arrayP = newArray;
+  }
+
+  bool errorCheck(int index)
+  {
+    if (index > itemAmount)
+      return false;
+
+    return true;
   }
 
   int size;

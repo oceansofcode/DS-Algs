@@ -14,7 +14,7 @@ public:
 
   DynArray(int size)
   {
-    arrayP = new T[size];
+    arrayP = createArray(size);
     this->size = size;
     this->itemAmount = 0;
 
@@ -44,13 +44,13 @@ public:
     if (itemAmount == size)
       expandArray();
 
-    *(arrayP + itemAmount) = item;
+    arrayP[itemAmount] = item;
     itemAmount++;
   }
 
   T getItem(int index)
   {
-    return *(arrayP + index);
+    return arrayP[index];
   }
 
   void addItem(T item, int index);
@@ -87,6 +87,18 @@ public:
 private:
   T *arrayP;
 
+  T *createArray(int size)
+  {
+    T *array = new T[size];
+
+    for (int i = 0; i < size; i++)
+    {
+      array[i] = 0;
+    }
+
+    return array;
+  }
+
   void expandArray()
   {
     int newSize = this->size * 2;
@@ -99,11 +111,11 @@ private:
 
   T *copyArray(int size)
   {
-    T *newArray = new T[size];
+    T *newArray = createArray(size);
 
     for (int i = 0; i < size; i++)
     {
-      *(newArray + i) = *(arrayP + i);
+      newArray[i] = arrayP[i];
     }
 
     return newArray;

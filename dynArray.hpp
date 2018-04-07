@@ -51,26 +51,13 @@ public:
 
   T getItem(int index)
   {
-<<<<<<< HEAD
-    if (!errorCheck)
-      return NULL;
+    if (!errorCheck(index))
+      return 0;
 
-    return *(arrayP + index);
-    == == == =
-                 return arrayP[index];
->>>>>>> fb8cbf139eb06593c8b154e8094e98df1920d16e
+    return arrayP[index];
   }
 
-  void addItem(T item, int index)
-  {
-    if (index == itemAmount + 1)
-    {
-      addLast(T item)
-    }
-    else
-    {
-    }
-  }
+  void addItem(T item, int index);
 
   T removeItem(int index);
 
@@ -122,8 +109,20 @@ private:
     T *newArray = copyArray(newSize);
 
     delete[] arrayP;
-    size = newSize;
+    this->size = newSize;
     arrayP = newArray;
+  }
+
+  T *copyArray(int size)
+  {
+    T *newArray = createArray(size);
+
+    for (int i = 0; i < size; i++)
+    {
+      newArray[i] = arrayP[i];
+    }
+
+    return newArray;
   }
 
   bool errorCheck(int index)

@@ -11,3 +11,7 @@ a.exe: $(OBJ)
 
 clean:
 	-rm *.o a.exe
+
+all:
+	gcc alarm_mutex.c -g -D_POSIX_PTHREAD_SEMANTICS -lpthread -o alarm.exe
+	gcc New_Alarm_Mutex.c -g -D_POSIX_PTHREAD_SEMANTICS -lpthread -o new_alarm.exe

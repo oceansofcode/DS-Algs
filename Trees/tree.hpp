@@ -3,30 +3,30 @@
 
 class Tree
 {
-  public:
-    Tree();
-    ~Tree();
+public:
+  Tree();
+  ~Tree();
 
-    void addInt(int item);
-    bool hasItem(int item);
+  void addInt(int item);
+  bool hasItem(int item);
 
-    bool isEmpty();
+  bool isEmpty();
 
-    void postOrder();
-    void preOrder();
-    void inOrder();
+  void postOrder();
+  void preOrder();
+  void inOrder();
 
-  private:
-    typedef struct _Node
-    {
-        int value;
-        struct _Node *parent;
-        struct _Node *leftChild;
-        struct _Node *rightChild;
-    } Node;
+private:
+  struct Node
+  {
+    int value;
+    Node *parent;
+    Node *leftChild;
+    Node *rightChild;
+  };
 
-    Node *root;
-    int size;
+  Node *root;
+  int size;
 };
 
 #endif

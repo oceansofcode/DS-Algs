@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adamzis/C-Data-Algs.git"
+    "url": "git+https://github.com/adamzis/DS-Algs.git"
   },
   "author": "",
   "license": "GNU",
   "bugs": {
-    "url": "https://github.com/adamzis/C-Data-Algs/issues"
+    "url": "https://github.com/adamzis/DS-Algs/issues"
   },
-  "homepage": "https://github.com/adamzis/C-Data-Algs#readme",
+  "homepage": "https://github.com/adamzis/DS-Algs#readme",
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",

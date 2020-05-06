@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import { should } from 'chai';
-import { twoSum } from './twoSum';
+import { twoSum } from './twoSumP';
 
 should();
 

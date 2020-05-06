@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable immutable/no-let */
 const mocha_1 = require("mocha");
 const chai_1 = require("chai");
-/* eslint-disable immutable/no-let */
 /**
  * @param {number[]} nums
  * @param {number} target

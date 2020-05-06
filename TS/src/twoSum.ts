@@ -1,7 +1,7 @@
+/* eslint-disable immutable/no-let */
 import { describe, it } from 'mocha';
 import { should } from 'chai';
 
-/* eslint-disable immutable/no-let */
 /**
  * @param {number[]} nums
  * @param {number} target

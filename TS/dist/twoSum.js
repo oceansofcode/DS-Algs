@@ -1,23 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable immutable/no-let */
-const mocha_1 = require("mocha");
-const chai_1 = require("chai");
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = (nums, target) => {
-    const sortedNums = nums.filter(num => num <= target).sort();
-    const sortedNumLength = sortedNums.length;
+exports.twoSum = (nums, target) => {
+    const filteredNums = [];
+    const numsLength = nums.length;
+    const indexMap = new Map();
     let foundNumbers;
+    // O(n)
+    for (let i = 0; i < numsLength; i++) {
+        if (nums[i] <= target) {
+            indexMap.set(nums[i], i);
+            filteredNums.push(nums[i]);
+        }
+    }
+    // O(nlogn)
+    const sortedNums = filteredNums.sort();
+    const sortedNumLength = sortedNums.length;
     for (let i = 0; i < sortedNumLength - 1; i++) {
         const firstNum = sortedNums[i];
         for (let j = i + 1; j < sortedNumLength; j++) {
             const secondNum = sortedNums[j];
             if (target - firstNum == secondNum) {
-                foundNumbers = [i, j];
+                foundNumbers = [indexMap.get(firstNum), indexMap.get(secondNum)];
                 break;
             }
         }
@@ -27,9 +36,4 @@ const twoSum = (nums, target) => {
     }
     return foundNumbers;
 };
-chai_1.should();
-mocha_1.describe('Test cases', () => {
-    mocha_1.it('should equal [1, 2]', () => {
-        twoSum([3, 2, 4], 6).should.equal([1, 2]);
-    });
-});
+//# sourceMappingURL=twoSum.js.map

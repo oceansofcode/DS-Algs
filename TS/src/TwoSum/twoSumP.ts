@@ -39,3 +39,6 @@ export const twoSum = (nums: number[], target: number): number[] => {
 
    return foundNumbers;
 };
+
+console.log(twoSum([3, 2, 4], 6)); // Should equal [1, 2]
+console.log(twoSum([3, 3], 6)); // Should equal [0, 1]

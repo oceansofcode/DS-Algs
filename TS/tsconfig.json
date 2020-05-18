@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "target": "ESNext",
+        "moduleResolution": "node",
         "removeComments": false,
         "sourceMap": true,
         "outDir": "dist",

@@ -5,3 +5,5 @@
 main.cpp
 node_modules
 TS/dist
+
+**/target

@@ -1,9 +1,3 @@
-*.o
 *.exe
-*.out
-
-main.cpp
-node_modules
-TS/dist
 
 **/target
